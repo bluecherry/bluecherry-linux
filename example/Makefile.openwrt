@@ -25,7 +25,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/bluecherry/bluecherry-linux.git
-PKG_SOURCE_VERSION:=0a2bba8d93d733dced44b1921062116368e50b55
+PKG_SOURCE_VERSION:=<commit-hash>
 PKG_SOURCE_DATE:=2026-06-24
 
 PKG_MAINTAINER:=Daan Pape <daan@dptechnics.com>
