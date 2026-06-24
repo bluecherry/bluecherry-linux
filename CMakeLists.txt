@@ -39,11 +39,22 @@ target_compile_options(bluecherry-lite PRIVATE -Wall -Wextra)
 if(BC_LOG_ENABLE)
     target_compile_definitions(bluecherry-lite PRIVATE BC_LOG_ENABLE=1)
 endif()
-target_include_directories(bluecherry-lite PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/bluecherry)
+file(CREATE_LINK
+    ${CMAKE_CURRENT_SOURCE_DIR}/inc/bclite.h
+    ${CMAKE_CURRENT_BINARY_DIR}/include/bluecherry/bclite.h
+    SYMBOLIC)
+
+target_include_directories(bluecherry-lite
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/inc
+)
 target_link_libraries(bluecherry-lite OpenSSL::SSL OpenSSL::Crypto Threads::Threads)
 
-# bluecherry-lite library installation
 install(TARGETS bluecherry-lite DESTINATION lib)
 
-# Install the header files
 install(FILES "inc/bclite.h" DESTINATION "include/bluecherry" COMPONENT Headers)
