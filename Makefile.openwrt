@@ -47,6 +47,7 @@ endef
 define Package/bluecherry-lite/description
 	The BlueCherry linux library implements the BlueCherry lite zero-touch
 	provisioning and communication protocol implementation.
+	NOTE: libopenssl must be built with DTLS support (CONFIG_OPENSSL_WITH_DTLS=y).
 endef
 
 define Package/bluecherry-lite/install
