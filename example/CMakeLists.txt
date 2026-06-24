@@ -16,11 +16,11 @@
 # Author: Daan Pape <daan@dptechnics.com>
 
 cmake_minimum_required(VERSION 3.21)
-project(bluecherry-linux-example LANGUAGES C)
+project(bluecherry-lite-example LANGUAGES C)
 
 add_subdirectory(.. bluecherry-linux-build)
 
-add_executable(bluecherry-example main.c)
-set_target_properties(bluecherry-example PROPERTIES C_STANDARD 99 C_EXTENSIONS ON)
-target_compile_options(bluecherry-example PRIVATE -Wall -Wextra)
-target_link_libraries(bluecherry-example PRIVATE bluecherry-linux)
+add_executable(bluecherry-lite main.c)
+set_target_properties(bluecherry-lite PROPERTIES C_STANDARD 99 C_EXTENSIONS ON)
+target_compile_options(bluecherry-lite PRIVATE -Wall -Wextra)
+target_link_libraries(bluecherry-lite PRIVATE bluecherry-linux)

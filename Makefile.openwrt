@@ -19,7 +19,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=bluecherry-linux
+PKG_NAME:=bluecherry-lite
 PKG_VERSION:=1.0.0
 PKG_RELEASE:=1
 
@@ -35,21 +35,24 @@ PKG_LICENSE_FILES:=LICENSE.md
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-define Package/bluecherry-linux
+CMAKE_INSTALL:=1
+
+define Package/bluecherry-lite
 	SECTION:=libs
 	CATEGORY:=Libraries
 	TITLE:=BlueCherry Linux library
 	DEPENDS:=+libopenssl
 endef
 
-define Package/bluecherry-linux/description
+define Package/bluecherry-lite/description
 	The BlueCherry linux library implements the BlueCherry lite zero-touch
 	provisioning and communication protocol implementation.
 endef
 
-define Package/bluecherry-linux/install
+define Package/bluecherry-lite/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbluecherry-linux.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbluecherry-lite.so* $(1)/usr/lib/
+	
 endef
 
-$(eval $(call BuildPackage,bluecherry-linux))
+$(eval $(call BuildPackage,bluecherry-lite))

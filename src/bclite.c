@@ -1,5 +1,5 @@
 /**
- * @file bluecherry.c
+ * @file bclite.c
  * @author Daan Pape <daan@dptechnics.com>
  * @author Thibo Verheyde <thibo@dptechnics.com>
  * @author Arnoud Devoogdt <arnoud@dptechnics.com>
@@ -20,7 +20,8 @@
  * If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
  */
 
-#include <bluecherry.h>
+#include "bclite.h"
+
 #include <stdio.h>
 #include <inttypes.h>
 #include <unistd.h>

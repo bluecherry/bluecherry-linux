@@ -16,7 +16,7 @@
 # Author: Daan Pape <daan@dptechnics.com>
 
 cmake_minimum_required(VERSION 3.21)
-project(bluecherry-linux LANGUAGES C)
+project(bluecherry-lite LANGUAGES C)
 
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
@@ -26,24 +26,24 @@ if(OPENSSL_FOUND)
 endif()
 
 set(SOURCES
-    src/bluecherry.c
+    src/bclite.c
 )
 
 option(BC_LOG_ENABLE "Enable BlueCherry logging" ON)
 
-add_library(bluecherry-linux SHARED ${SOURCES})
+add_library(bluecherry-lite SHARED ${SOURCES})
 
-set_target_properties(bluecherry-linux PROPERTIES C_STANDARD 99 C_EXTENSIONS ON)
-target_compile_options(bluecherry-linux PRIVATE -Wall -Wextra)
+set_target_properties(bluecherry-lite PROPERTIES C_STANDARD 99 C_EXTENSIONS ON)
+target_compile_options(bluecherry-lite PRIVATE -Wall -Wextra)
 
 if(BC_LOG_ENABLE)
-    target_compile_definitions(bluecherry-linux PRIVATE BC_LOG_ENABLE=1)
+    target_compile_definitions(bluecherry-lite PRIVATE BC_LOG_ENABLE=1)
 endif()
-target_include_directories(bluecherry-linux PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/inc)
-target_link_libraries(bluecherry-linux OpenSSL::SSL OpenSSL::Crypto Threads::Threads)
+target_include_directories(bluecherry-lite PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/inc)
+target_link_libraries(bluecherry-lite OpenSSL::SSL OpenSSL::Crypto Threads::Threads)
 
-# bluecherry-linux library installation
-install(TARGETS bluecherry-linux DESTINATION lib)
+# bluecherry-lite library installation
+install(TARGETS bluecherry-lite DESTINATION lib)
 
 # Install the header files
-install(FILES "inc/bluecherry.h" DESTINATION "include/bluecherry-linux" COMPONENT Headers)
+install(FILES "inc/bclite.h" DESTINATION "include/bluecherry" COMPONENT Headers)

@@ -1,5 +1,5 @@
 /**
- * @file bluecherry.h
+ * @file bclite.h
  * @author Daan Pape <daan@dptechnics.com>
  * @brief This code connects to the BlueCherry platform as a lite device.
  * @version 1.0.0
@@ -18,8 +18,8 @@
  * If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
  */
 
-#ifndef BLUECHERRY_H
-#define BLUECHERRY_H
+#ifndef BCLITE_H
+#define BCLITE_H
 
 #include <stdbool.h>
 #include <stdlib.h>
