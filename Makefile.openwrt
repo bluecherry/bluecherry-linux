@@ -1,0 +1,56 @@
+#
+# Copyright (C) 2026 DPTechnics BV
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License along
+# with this program. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
+#
+# Author: Daan Pape <daan@dptechnics.com>
+#
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=bluecherry-linux
+PKG_VERSION:=1.0.0
+PKG_RELEASE:=1
+
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/bluecherry/bluecherry-linux.git
+PKG_SOURCE_VERSION:=<commit-hash>
+PKG_SOURCE_DATE:=2026-06-24
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_SOURCE_VERSION)
+
+PKG_MAINTAINER:=Daan Pape <daan@dptechnics.com>
+PKG_LICENSE:=LGPL-3.0-or-later
+PKG_LICENSE_FILES:=LICENSE.md
+
+include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
+
+define Package/bluecherry-linux
+	SECTION:=libs
+	CATEGORY:=Libraries
+	TITLE:=BlueCherry Linux library
+	DEPENDS:=+libopenssl
+endef
+
+define Package/bluecherry-linux/description
+	The BlueCherry linux library implements the BlueCherry lite zero-touch
+	provisioning and communication protocol implementation.
+endef
+
+define Package/bluecherry-linux/install
+	$(INSTALL_DIR) $(1)/usr/lib
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libbluecherry-linux.so* $(1)/usr/lib/
+endef
+
+$(eval $(call BuildPackage,bluecherry-linux))
