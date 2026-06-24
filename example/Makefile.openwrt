@@ -1,0 +1,58 @@
+#
+# Copyright (C) 2026 DPTechnics BV
+#
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Lesser General Public License as published by the Free
+# Software Foundation, either version 3 of the License, or (at your option) any
+# later version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Lesser General Public License along
+# with this program. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.
+#
+# Author: Daan Pape <daan@dptechnics.com>
+#
+
+include $(TOPDIR)/rules.mk
+
+PKG_NAME:=bluecherry-lite-example
+PKG_VERSION:=1.0.0
+PKG_RELEASE:=1
+
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/bluecherry/bluecherry-linux.git
+PKG_SOURCE_VERSION:=0a2bba8d93d733dced44b1921062116368e50b55
+PKG_SOURCE_DATE:=2026-06-24
+
+PKG_MAINTAINER:=Daan Pape <daan@dptechnics.com>
+PKG_LICENSE:=LGPL-3.0-or-later
+PKG_LICENSE_FILES:=LICENSE.md
+
+include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
+
+CMAKE_SOURCE_DIR:=$(PKG_BUILD_DIR)/example
+CMAKE_INSTALL:=1
+
+define Package/bluecherry-lite-example
+	SECTION:=net
+	CATEGORY:=Network
+	SUBMENU:=BlueCherry
+	TITLE:=BlueCherry Lite Example
+	DEPENDS:=+bluecherry-lite
+endef
+
+define Package/bluecherry-lite-example/description
+	This package contains the BlueCherry lite example application.
+endef
+
+define Package/bluecherry-lite-example/install
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/bluecherry-lite-example $(1)/usr/sbin/bluecherry-lite-example
+endef
+
+$(eval $(call BuildPackage,bluecherry-lite-example))

@@ -489,6 +489,16 @@ static bool _bluecherry_dtls_connect(const char* host, const char* port)
         continue;
       }
       BC_LOGE("DTLS handshake failed (SSL error %d)", err);
+#ifdef BC_LOG_ENABLE
+      {
+        unsigned long ssl_err;
+        char ssl_err_buf[256];
+        while((ssl_err = ERR_get_error()) != 0) {
+          ERR_error_string_n(ssl_err, ssl_err_buf, sizeof(ssl_err_buf));
+          BC_LOGE("  %s", ssl_err_buf);
+        }
+      }
+#endif
       goto cleanup;
     }
   }
